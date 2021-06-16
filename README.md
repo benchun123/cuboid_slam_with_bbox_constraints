@@ -69,4 +69,11 @@ roslaunch object_slam_bbox object_slam_example.launch
 
 ![picture](pic/slam_result.png)
 
+## Notes
+
+* The code is released under the BSD license. Feel free to adjust it as you like for research. Please cite our paper in your publications if you feel it helpful. 
+
+* The code referred to several open-source SLAM codes, thanks to their great work: [ORBSLAM](https://github.com/raulmur/ORB_SLAM2), [CubeSLAM](https://github.com/shichaoy/cube_slam). 
+
+* If you have any further questions, feel free to contact the author: benchun.germany{at}gmail.com
 
