@@ -45,6 +45,9 @@ make
 ./bbox_cabinet_det_node ../../data #path_to_cabinet data
 >> it can output "online_camera.txt" and "online_cube.txt" to save the result. 
 
+![picture](pic/detection_result.png)
+
+
 4) to run ros code:  
 firstly, you also need to build essential thirdparty library in (2)
 secondly, you need to build g2o in thirdparty library
@@ -64,7 +67,6 @@ catkin_make
 source devel/setup.bash    
 roslaunch object_slam_bbox object_slam_example.launch   
 
-![picture](pic/detection_result.png)
-![picture](pic/slam_result.png.png)
+![picture](pic/slam_result.png)
 
 
