@@ -64,9 +64,7 @@ catkin_make
 source devel/setup.bash    
 roslaunch object_slam_bbox object_slam_example.launch   
 
-![alt text](https:https://github.com/benchun123/cuboid_slam_with_bbox_constraints/pic/detection_result.png?raw=true)
-
-
-![alt text](https:https://github.com/benchun123/cuboid_slam_with_bbox_constraints/pic/slam_result.png?raw=true)
+![picture](pic/detection_result.png)
+![picture](pic/slam_result.png.png)
 
 
