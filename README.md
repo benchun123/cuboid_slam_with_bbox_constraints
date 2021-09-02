@@ -69,6 +69,10 @@ roslaunch object_slam_bbox object_slam_example.launch
 
 ![picture](pic/slam_result.png)
 
+## more results
+![video]({pic/slam_livingroom.png})]({video/20210712_orb_bbox_living_room_5.mp4} "Living Room dataset")
+![video]({pic/slam_line.png})]({video/20210727_line1.mp4} "Living Room dataset")
+
 ## Notes
 
 * The code is released under the BSD license. Feel free to adjust it as you like for research. Please cite our paper in your publications if you feel it helpful. 
