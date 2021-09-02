@@ -72,7 +72,9 @@ roslaunch object_slam_bbox object_slam_example.launch
 ## more results
 <figure class="video_container">
   <video controls="true" allowfullscreen="true" poster="pic/slam_livingroom.png">
-    <source src="video/20210712_orb_bbox_living_room_5.mp4" type="video/mp4">
+    <source src="path/to/20210712_orb_bbox_living_room_5.mp4" type="video/mp4">
+    <source src="path/to/20210712_orb_bbox_living_room_5.ogg" type="video/ogg">
+    <source src="path/to/20210712_orb_bbox_living_room_5.webm" type="video/webm">
   </video>
 </figure>
 
