@@ -70,8 +70,14 @@ roslaunch object_slam_bbox object_slam_example.launch
 ![picture](pic/slam_result.png)
 
 ## more results
-![video]({pic/slam_livingroom.png})]({video/20210712_orb_bbox_living_room_5.mp4} "Living Room dataset")
-![video]({pic/slam_line.png})]({video/20210727_line1.mp4} "Living Room dataset")
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="pic/slam_livingroom.png">
+    <source src="video/20210712_orb_bbox_living_room_5.mp4" type="video/mp4">
+  </video>
+  <video controls="true" allowfullscreen="true" poster="pic/slam_line.png">
+    <source src="video/20210727_line1.mp4" type="video/mp4">
+  </video>
+</figure>
 
 ## Notes
 
