@@ -74,9 +74,6 @@ roslaunch object_slam_bbox object_slam_example.launch
   <video controls="true" allowfullscreen="true" poster="pic/slam_livingroom.png">
     <source src="video/20210712_orb_bbox_living_room_5.mp4" type="video/mp4">
   </video>
-  <video controls="true" allowfullscreen="true" poster="pic/slam_line.png">
-    <source src="video/20210727_line1.mp4" type="video/mp4">
-  </video>
 </figure>
 
 ## Notes
