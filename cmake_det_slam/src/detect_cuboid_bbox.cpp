@@ -139,7 +139,7 @@ bool detect_cuboid_bbox::Read_Camera_Pose_TUM(std::string &cam_pose_file) // dat
 
 bool detect_cuboid_bbox::Read_Object_Info_TUM(std::string &cuboid_file) // x, y, z, yaw, longth, width, height
 {
-	Eigen::MatrixXd cuboid_list(1, 9);
+	Eigen::MatrixXd cuboid_list(1, 7);
 	if (!read_all_number_txt(cuboid_file, cuboid_list))
 		return -1;
 	truth_cuboid_list = cuboid_list;
@@ -528,10 +528,10 @@ void detect_cuboid_bbox::detect_cuboid_every_frame(cv::Mat &rgb_img, std::vector
 	for (size_t object_id = 0; object_id < det_obj_num; object_id++)
 	{
 		std::cout << "object_id: " << object_id << std::endl;
-		double det_obj_yaw = truth_cuboid_list(0, 6); // do not need
+		double det_obj_yaw = truth_cuboid_list(0, 3); // do not need
 		std::string det_obj_name = "cabinet";
 		Eigen::Vector4d det_obj_2d_bbox = det_bbox_2d.block(0, 0, 1, 4).transpose();
-		Eigen::Vector3d det_obj_dim_ave = truth_cuboid_list.block(0, 6, 1, 3).transpose();
+		Eigen::Vector3d det_obj_dim_ave = truth_cuboid_list.block(0, 4, 1, 3).transpose();
 
 		ca::Profiler::tictoc("object detection");
 		detect_cuboid_with_bbox_constraints(rgb_img, Twc, det_obj_2d_bbox, det_obj_yaw, det_obj_dim_ave, mvPlaneCoefficients, single_object_candidate);
