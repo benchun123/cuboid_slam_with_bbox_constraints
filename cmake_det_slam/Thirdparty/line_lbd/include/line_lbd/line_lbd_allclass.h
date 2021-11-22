@@ -41,7 +41,7 @@ public:
     
 
     void detect_raw_lines(const cv::Mat& gray_img, std::vector< KeyLine>& keylines_out);  // without line thresholding
-    void detect_raw_lines(const cv::Mat& gray_img, std::vector<std::vector< KeyLine> >& keyline_octaves);  // without line thresholding, multi-octaves     
+    void detect_raw_lines(const cv::Mat& gray_img, std::vector<std::vector< KeyLine>>& keyline_octaves);  // without line thresholding, multi-octaves     
     void detect_raw_lines(const cv::Mat& gray_img, cv::Mat& linesmat_out, bool downsample_img=false);  /* output is n*4 32F mat. x1 y1 x2 y2 */    
     
     void get_line_descriptors(const cv::Mat& gray_img, const cv::Mat& linesmat_src, cv::Mat& line_descrips);
@@ -59,7 +59,7 @@ public:
     void detect_descrip_lines(const cv::Mat& gray_img, std::vector< KeyLine>& keylines_out, cv::Mat& line_descrips);
     
     // each octaves would be a separate vector.
-    void detect_descrip_lines_octaves(const cv::Mat& gray_img, std::vector<std::vector< KeyLine> >& keylines_out, std::vector<cv::Mat>& line_descrips);
+    void detect_descrip_lines_octaves(const cv::Mat& gray_img, std::vector<std::vector< KeyLine>>& keylines_out, std::vector<cv::Mat>& line_descrips);
     
     /* compute the best matches for a set of edge descriptors. for each query descriptors, find the closest descriptor in traings. the smaller threshold, the stricter match */
     void match_line_descrip(const cv::Mat& descrips_query, const cv::Mat& descrips_train, std::vector<cv::DMatch>& good_matches, float matching_dist_thres=25);

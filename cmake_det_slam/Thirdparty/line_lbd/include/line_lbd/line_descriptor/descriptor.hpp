@@ -279,7 +279,7 @@ class CV_EXPORTS BinaryDescriptor : public Algorithm
     @param mask mask matrix to detect only KeyLines of interest
      */
   void detect( const Mat& image, CV_OUT std::vector<KeyLine>& keypoints, const Mat& mask = Mat() );
-  void detect( const Mat& image, CV_OUT std::vector<std::vector<KeyLine> >& keyline_octaves, const Mat& mask );
+  void detect( const Mat& image, CV_OUT std::vector<std::vector<KeyLine>>& keyline_octaves, const Mat& mask );
 
   /** @overload
 
@@ -347,7 +347,7 @@ class CV_EXPORTS BinaryDescriptor : public Algorithm
  protected:
   /** implementation of line detection */
 //   virtual void detectImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, const Mat& mask = Mat() );
-  virtual void detectImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, std::vector<std::vector<KeyLine> >& keyline_octaves,
+  virtual void detectImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, std::vector<std::vector<KeyLine>>& keyline_octaves,
 				   const Mat& mask ) const;
   /** implementation of descriptors' computation */
   virtual void computeImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, Mat& descriptors, bool returnFloatDescr,
@@ -1041,7 +1041,7 @@ static Ptr<LSDDetector> createLSDDetector();
 @param mask mask matrix to detect only KeyLines of interest
  */
 void detect( const Mat& image, CV_OUT std::vector<KeyLine>& keylines, int scale, int numOctaves, LSDOptions& opts, const Mat& mask = Mat() );
-void detect( const Mat& image, CV_OUT std::vector<std::vector<KeyLine> >& keyline_octaves, int scale, int numOctaves, 
+void detect( const Mat& image, CV_OUT std::vector<std::vector<KeyLine>>& keyline_octaves, int scale, int numOctaves, 
 	     LSDOptions& opts, const Mat& mask = Mat() );
 /** @overload
 @param images input images
@@ -1059,7 +1059,7 @@ private:
 void computeGaussianPyramid( const Mat& image, int numOctaves, int scale );
 
 /* implementation of line detection */
-void detectImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, std::vector<std::vector<KeyLine> >& keyline_octaves, 
+void detectImpl( const Mat& imageSrc, std::vector<KeyLine>& keylines, std::vector<std::vector<KeyLine>>& keyline_octaves, 
 		 int numOctaves, int scale, const LSDOptions& opts, const Mat& mask ) const;
 
 /* matrices for Gaussian pyramids */
