@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     object_detector.whether_plot_final_scores = true;
     object_detector.whether_sample_obj_dimension = false;
     object_detector.whether_sample_obj_yaw = true;
-    object_detector.whether_add_plane_constraints = true;
+    object_detector.whether_add_plane_constraints = false;
     object_detector.whether_save_cam_obj_data = true;
     object_detector.whether_save_final_image = true;
 

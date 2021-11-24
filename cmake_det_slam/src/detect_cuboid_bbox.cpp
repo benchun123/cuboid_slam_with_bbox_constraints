@@ -274,8 +274,11 @@ void detect_cuboid_bbox::detect_cuboid_with_bbox_constraints(cv::Mat &rgb_img, E
 	// sample object yaw, note the yaw is in world coordinates, could we sample local yaw?
 	if (whether_sample_obj_yaw)
 	{
-		// double yaw_init = camera_rpy(2) - 90.0 / 180.0 * M_PI; // yaw init is directly facing the camera, align with camera optical axis
-		double yaw_init = 0.0 / 180.0 * M_PI; // yaw init is directly facing the camera, align with camera optical axis
+		Eigen::Vector3d camera_rpy;
+        Eigen::Matrix3d Rot_Mat = Twc.block(0,0,3,3); 
+        quat_to_euler_zyx(Quaterniond(Rot_Mat), camera_rpy(0), camera_rpy(1), camera_rpy(2));
+		double yaw_init = camera_rpy(2) - 90.0 / 180.0 * M_PI; // yaw init is directly facing the camera, align with camera optical axis
+		// double yaw_init = 0.0 / 180.0 * M_PI; // yaw init is directly facing the camera, align with camera optical axis
 		linespace<double>(yaw_init - 90.0 / 180.0 * M_PI, yaw_init + 90.0 / 180.0 * M_PI, 5.0 / 180.0 * M_PI, obj_yaw_samples);
 		// linespace<double>(yaw_init - 180.0 / 180.0 * M_PI, yaw_init + 180.0 / 180.0 * M_PI, 5.0 / 180.0 * M_PI, obj_yaw_samples);
 	}
@@ -335,9 +338,9 @@ void detect_cuboid_bbox::detect_cuboid_with_bbox_constraints(cv::Mat &rgb_img, E
 				inside_obj_edge_num++;
 			}
 	// merge edges and remove short lines, after finding object edges.  edge merge in small regions should be faster than all.
-	double pre_merge_dist_thre = 10;
+	double pre_merge_dist_thre = 20;
 	double pre_merge_angle_thre = 5;
-	double edge_length_threshold = 40;
+	double edge_length_threshold = 30;
 	MatrixXd all_lines_merge_inobj;
 	merge_break_lines(all_lines_inside_object.topRows(inside_obj_edge_num), all_lines_merge_inobj, pre_merge_dist_thre,
 					  pre_merge_angle_thre, edge_length_threshold);
@@ -448,8 +451,10 @@ void detect_cuboid_bbox::detect_cuboid_with_bbox_constraints(cv::Mat &rgb_img, E
 						// std::cout << "angle_error: " << angle_error << std::endl;
 
 						// compute feature error = (dis_err + k*angle_err)/(1+k)
-						double weight_angle = 0.8;
-						double feature_error = (1 - weight_angle) * (distance_error / 10.0) + weight_angle * (fmod(angle_error, M_PI) / M_PI);
+						// double weight_angle = 0.8;
+						// double feature_error = (1 - weight_angle) * (distance_error / 10.0) + weight_angle * (fmod(angle_error, M_PI) / M_PI);
+						double weight_angle = 2.0;
+          				double feature_error = (distance_error + weight_angle * angle_error) / (1 + weight_angle);
 
 						// compute obj-plane error
 						// double obj_plane_error = 0.0;
@@ -593,12 +598,12 @@ void detect_cuboid_bbox::detect_cuboid_every_frame(cv::Mat &rgb_img, std::vector
 				std::cout << "esti obj_rpy_world: " << obj_rpy_world.transpose() << std::endl;
 				std::cout << "esti obj_dim_world: " << obj_dim_world.transpose() << std::endl;
 				// pay attention to the format
-				online_stream_cube_multi << detected_obj_name[i] << " " << raw_2d_objs(0)
-										 << " " << raw_2d_objs(1) << " " << raw_2d_objs(2) << " " << raw_2d_objs(3)
+				online_stream_cube_multi << detected_obj_name[i] << " " 
+										// << raw_2d_objs(0) << " " << raw_2d_objs(1) << " " << raw_2d_objs(2) << " " << raw_2d_objs(3)
 										 << " " << obj_loc_world(0) << " " << obj_loc_world(1) << " " << obj_loc_world(2)
 										 << " " << obj_rpy_world(0) << " " << obj_rpy_world(1) << " " << obj_rpy_world(2)
 										 << " " << obj_dim_world(1) << " " << obj_dim_world(0) << " " << obj_dim_world(2)
-										 << " "
+										//  << " "
 										 << "\n";
 
 				// // save local value
